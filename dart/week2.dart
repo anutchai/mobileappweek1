@@ -3,7 +3,6 @@ void main() {
   // var x = callColor("white");
   // print(x);
 
-  // เรียก function
   callWeb("Google", protocal: "https", port: 443);
 }
 
