@@ -2,6 +2,8 @@ void main() {
   // print(callGen(1991));
   // var x = callColor("white");
   // print(x);
+
+  // เรียก function
   callWeb("Google", protocal: "https", port: 443);
 }
 
