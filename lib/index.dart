@@ -8,18 +8,10 @@ class Index extends StatelessWidget {
       body: Container(
         alignment: Alignment.center,
         child: Stack(
-          children: [
-            Positioned(
-              top: -20,
-              left: -30,
-              child: Image.asset(
-                "asset/image/circle.png",
-                width: size.width * 0.2,
-              ),
-            ),
+          children: <Widget>[
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+              children: <Widget>[
                 SizedBox(
                   height: 20,
                 ),
@@ -40,7 +32,6 @@ class Index extends StatelessWidget {
                 ),
                 Image.asset(
                   "asset/image/main.png",
-                  width: size.width * 0.9,
                 ),
                 SizedBox(
                   height: 20,
@@ -49,11 +40,10 @@ class Index extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.amber[900],
                     padding: EdgeInsets.fromLTRB(120, 15, 120, 15),
-                    // padding: EdgeInsets.all(20),
                     shape: StadiumBorder(),
                   ),
                   child: Text(
-                    "LOGIN",
+                    "SIGN IN",
                     style: TextStyle(fontSize: 16),
                   ),
                   onPressed: () {
@@ -78,6 +68,14 @@ class Index extends StatelessWidget {
                   },
                 ),
               ],
+            ),
+            Positioned(
+              top: -60,
+              left: -70,
+              child: Image.asset(
+                "asset/image/circle.png",
+                width: size.width * 0.4,
+              ),
             ),
           ],
         ),
