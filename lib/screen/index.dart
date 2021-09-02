@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../config/constant.dart';
+
 class Index extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class Index extends StatelessWidget {
                 Text(
                   "Welcome to KMUTNB",
                   style: TextStyle(
-                    color: Colors.amber[900],
+                    color: pColor,
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
                   ),
@@ -38,7 +40,7 @@ class Index extends StatelessWidget {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.amber[900],
+                    primary: sColor,
                     padding: EdgeInsets.fromLTRB(120, 15, 120, 15),
                     shape: StadiumBorder(),
                   ),
@@ -47,7 +49,8 @@ class Index extends StatelessWidget {
                     style: TextStyle(fontSize: 16),
                   ),
                   onPressed: () {
-                    print("Hello World");
+                    print("Hello Worlds");
+                    Navigator.pushNamed(context, 'Login');
                   },
                 ),
                 SizedBox(
@@ -55,7 +58,7 @@ class Index extends StatelessWidget {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.amber[900],
+                    primary: sColor,
                     padding: EdgeInsets.fromLTRB(120, 15, 120, 15),
                     shape: StadiumBorder(),
                   ),
@@ -65,6 +68,7 @@ class Index extends StatelessWidget {
                   ),
                   onPressed: () {
                     print("Hello World");
+                    Navigator.pushNamed(context, 'Register');
                   },
                 ),
               ],
