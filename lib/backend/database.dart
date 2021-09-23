@@ -46,4 +46,19 @@ class DBLocal {
 
     db.close();
   }
+
+  Future<bool> login(email, password) async {
+    var db = await this.connectDB();
+    var store = intMapStoreFactory.store('user');
+
+    var user = await store.find(db);
+
+    for (var item in user) {
+      if (item['email'] == email && item['password'] == password) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 }
