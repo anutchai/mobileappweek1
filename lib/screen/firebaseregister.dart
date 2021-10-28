@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobileappweek1/config/constant.dart';
+import 'package:mobileappweek1/screen/firebaselogin.dart';
 import 'package:mobileappweek1/screen/login.dart';
 
 class FirebaseRegister extends StatefulWidget {
@@ -160,8 +161,8 @@ class _FirebaseRegisterState extends State<FirebaseRegister> {
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) {
         // คำสั่งไว้สำหรับการไปเรียกหน้าใหม่ขึ้น
-        MaterialPageRoute materialPageRoute =
-            MaterialPageRoute(builder: (BuildContext context) => Login());
+        MaterialPageRoute materialPageRoute = MaterialPageRoute(
+            builder: (BuildContext context) => FirebaseLogin());
         Navigator.of(context).pushAndRemoveUntil(
             materialPageRoute, (Route<dynamic> route) => false);
       }).catchError((onError) {
