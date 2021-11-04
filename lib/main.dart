@@ -8,6 +8,7 @@ import 'package:mobileappweek1/screen/login.dart';
 import 'package:mobileappweek1/screen/packageimage.dart';
 import 'package:mobileappweek1/screen/packagelocation.dart';
 import 'package:mobileappweek1/screen/packagevideo.dart';
+import 'package:mobileappweek1/screen/store.dart';
 import 'screen/index.dart';
 
 // void main() => runApp(MyApp());
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         'Image': (context) => PackageImage(),
         'Video': (context) => PackageVideo(),
         'Location': (context) => PackageLocation(),
+        'Store': (context) => Store(),
       },
       theme: ThemeData(
         primaryColor: sColor,

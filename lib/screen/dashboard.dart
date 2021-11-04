@@ -107,6 +107,23 @@ class _DashboardState extends State<Dashboard> {
               ),
               ListTile(
                 onTap: () {
+                  print('Menu Store');
+                  Navigator.pushNamed(context, 'Store');
+                },
+                title: Text(
+                  'Store',
+                  style: TextStyle(
+                    fontSize: 24,
+                  ),
+                ),
+                leading: Icon(
+                  Icons.store,
+                  color: Colors.purple,
+                  size: 36,
+                ),
+              ),
+              ListTile(
+                onTap: () {
                   logout();
                   Navigator.of(context).pop();
                   Navigator.pushNamed(context, 'Index', arguments: []);
