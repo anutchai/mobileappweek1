@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobileappweek1/config/constant.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class AddData extends StatefulWidget {
   const AddData({Key? key}) : super(key: key);
@@ -9,25 +10,38 @@ class AddData extends StatefulWidget {
 }
 
 class _AddDataState extends State<AddData> {
-  var name, surname, email, password;
+  // ประกาศตัวแปรสำหรับการเพิ่มสินค้า
+  String? name, price, status;
   final formKey = GlobalKey<FormState>();
+
+  // กำหนดค่าเริ่มต้นสำหรับการส่งข้อมูลไปที่ Realtime Firebase
+  final dbfirebase = FirebaseDatabase.instance.reference().child('Store');
+
+  Future<void> createData() async {
+    dbfirebase.push().set({
+      'product': name,
+      'price': price,
+      'status': status,
+    }).then((value) {
+      print("Success");
+    }).catchError((onError) {
+      print(onError.code);
+      print(onError.message);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Register Firebase'),
-        ),
         body: Form(
           key: formKey,
           child: SingleChildScrollView(
             child: Column(
               children: [
-                // txtName(),
-                // txtSurname(),
-                txtEmail(),
-                txtPassword(),
+                txtName(),
+                txtPrice(),
+                txtStatus(),
                 btnSubmit(),
               ],
             ),
@@ -46,9 +60,9 @@ class _AddDataState extends State<AddData> {
           color: pColor,
         ),
         decoration: InputDecoration(
-          labelText: 'Name:',
-          icon: Icon(Icons.account_circle),
-          hintText: 'Input your name',
+          labelText: 'Product:',
+          icon: Icon(Icons.production_quantity_limits),
+          hintText: 'Input your product name',
         ),
         validator: (value) {
           if (value!.isEmpty) {
@@ -64,50 +78,43 @@ class _AddDataState extends State<AddData> {
     );
   }
 
-  Widget txtEmail() {
+  Widget txtPrice() {
     return Container(
       margin: EdgeInsets.fromLTRB(15, 20, 15, 20),
       child: TextFormField(
-        keyboardType: TextInputType.emailAddress,
+        keyboardType: TextInputType.number,
         style: TextStyle(
           fontSize: 24,
           color: pColor,
         ),
         decoration: InputDecoration(
-          labelText: 'Email:',
-          icon: Icon(Icons.email),
-          hintText: 'Input your email',
+          labelText: 'ราคา:',
+          icon: Icon(Icons.price_check),
+          hintText: 'ใส่ราคาสินค้า',
         ),
-        validator: (value) {
-          if (!(value!.contains('@'))) {
-            return 'กรุณากรอกข้อมูลตามรูปแบบอีเมลด้วย';
-          } else if (!(value.contains('.'))) {
-            return 'กรุณากรอกข้อมูลตามรูปแบบอีเมลด้วย';
-          }
-        },
+        validator: (value) {},
         onSaved: (value) {
-          email = value;
+          price = value;
         },
       ),
     );
   }
 
-  Widget txtPassword() {
+  Widget txtStatus() {
     return Container(
       margin: EdgeInsets.fromLTRB(15, 20, 15, 20),
       child: TextFormField(
-        obscureText: true,
         style: TextStyle(
           fontSize: 24,
           color: pColor,
         ),
         decoration: InputDecoration(
-          labelText: 'Password:',
-          icon: Icon(Icons.lock),
-          hintText: 'Input your password',
+          labelText: 'คำอธิบาย:',
+          icon: Icon(Icons.description),
+          hintText: 'ใส่คำบรรบายสินค้า',
         ),
         onSaved: (value) {
-          password = value;
+          status = value;
         },
       ),
     );
@@ -120,8 +127,12 @@ class _AddDataState extends State<AddData> {
         onPressed: () {
           if (formKey.currentState!.validate()) {
             formKey.currentState!.save();
+            print(name);
+            print(price);
+            print(status);
+            createData();
           }
         },
-        child: Text('Submit'),
+        child: Text('Save'),
       );
 }
